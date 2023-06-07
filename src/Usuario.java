@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public abstract class Usuario {
     public String senha;
     public String username;

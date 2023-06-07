@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Administrador extends Usuario {
@@ -21,4 +22,24 @@ public class Administrador extends Usuario {
         Administrador a = Administrador.criar();
         a.imprimir();
     }
+
+    private static Administrador getByUsername(String user, ArrayList<Administrador> admins) {
+        for (Administrador admin : admins) {
+            if (admin.username.equals(user)) {
+                return admin;
+            }
+        }
+        return null;
+    }
+
+    public static Administrador login(String user, String senha, ArrayList<Administrador> admins) {
+        Administrador admin = Administrador.getByUsername(user, admins);
+        if (admin != null) {
+            if (admin.senha.equals(senha)) {
+                return admin;
+            }
+        }
+        return null;
+    }
+
 }

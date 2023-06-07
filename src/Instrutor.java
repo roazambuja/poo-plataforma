@@ -24,4 +24,23 @@ public class Instrutor extends Usuario {
         Instrutor i = Instrutor.criar();
         i.imprimir();
     }
+
+    private static Instrutor getByUsername(String user, ArrayList<Instrutor> instrutores) {
+        for (Instrutor instrutor : instrutores) {
+            if (instrutor.username.equals(user)) {
+                return instrutor;
+            }
+        }
+        return null;
+    }
+
+    public static Instrutor login(String user, String senha, ArrayList<Instrutor> instrutores) {
+        Instrutor instrutor = Instrutor.getByUsername(user, instrutores);
+        if (instrutor != null) {
+            if (instrutor.senha.equals(senha)) {
+                return instrutor;
+            }
+        }
+        return null;
+    }
 }

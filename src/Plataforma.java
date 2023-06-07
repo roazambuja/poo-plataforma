@@ -39,14 +39,6 @@ public class Plataforma {
         System.out.println("E-mail: " + this.email);
     }
 
-    public static void menu() {
-        System.out.println("Como deseja fazer login?");
-        System.out.println("1 - Aluno");
-        System.out.println("2 - Administrador");
-        System.out.println("3 - Instrutor");
-        System.out.println("0 - Voltar");
-    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -55,40 +47,82 @@ public class Plataforma {
         plataforma.alunos.add(new Aluno("123", "mariazinha", "Maria", "maria@gmail.com"));
 
         Integer menu = 1;
+
         while (menu != 0) {
-            System.out.println("Seja bem vindo a plataforma " + plataforma.nome + "!");
-            System.out.println("1 - Fazer login");
-            System.out.println("2 - Criar conta");
-            System.out.println("0 - Sair");
-            menu = scanner.nextInt();
+            menu = Menu.menuPrincipal(plataforma.nome);
 
             switch (menu) {
                 case 1:
-                    Plataforma.menu();
-                    Integer menuLogin = scanner.nextInt();
-                    scanner.nextLine(); // limpa o scanner
+                    Integer menuLogin = Menu.menuOpcoes();
+                    String user, senha;
 
                     switch (menuLogin) {
                         case 1:
                             System.out.println("Digite seu email: ");
-                            String email = scanner.nextLine();
+                            user = scanner.nextLine();
                             System.out.println("Digite sua senha: ");
-                            String senha = scanner.nextLine();
-                            Aluno alunoLogado = Aluno.login(email, senha, plataforma.alunos);
+                            senha = scanner.nextLine();
+                            Aluno alunoLogado = Aluno.login(user, senha, plataforma.alunos);
                             if (alunoLogado == null) {
                                 System.out.println("Dados incorretos!");
                             } else {
+                                Integer menuAluno;
                                 System.out.println("Seja bem vindo, " + alunoLogado.nome + "!");
+                                do {
+                                    menuAluno = Menu.menuAluno();
+
+                                } while (menuAluno != 0);
                             }
                             System.out.println(
                                     "-----------------------------------------------------------------------\n");
+                            break;
+                        case 2:
+                            System.out.println("Digite seu username: ");
+                            user = scanner.nextLine();
+                            System.out.println("Digite sua senha: ");
+                            senha = scanner.nextLine();
+                            Administrador admLogado = Administrador.login(user, senha, plataforma.administradores);
+                            if (admLogado == null) {
+                                System.out.println("Dados incorretos!");
+                            } else {
+                                System.out.println("Seja bem vindo, " + admLogado.nome + "!");
+                                Integer menuAdmin;
+                                do {
+                                    menuAdmin = Menu.menuAdministrador();
+
+                                } while (menuAdmin != 0);
+                            }
+                            System.out.println(
+                                    "-----------------------------------------------------------------------\n");
+                            break;
+                        case 3:
+                            System.out.println("Digite seu username: ");
+                            user = scanner.nextLine();
+                            System.out.println("Digite sua senha: ");
+                            senha = scanner.nextLine();
+                            Instrutor instrutorLogado = Instrutor.login(user, senha, plataforma.instrutores);
+                            if (instrutorLogado == null) {
+                                System.out.println("Dados incorretos!");
+                            } else {
+                                System.out.println("Seja bem vindo, " + instrutorLogado.nome + "!");
+                                Integer menuInstrutor;
+                                do {
+                                    menuInstrutor = Menu.menuInstrutor();
+
+                                } while (menuInstrutor != 0);
+                            }
+                            System.out.println(
+                                    "-----------------------------------------------------------------------\n");
+                            break;
                     }
 
                     break;
                 case 2:
-                    Aluno.criar();
+                    plataforma.alunos.add(Aluno.criar());
                     System.out.println("Sua conta foi criada com sucesso! Agora, faça login para continuar.");
                     System.out.println("-----------------------------------------------------------------------\n");
+                    break;
+                case 0:
                     break;
                 default:
                     System.out.println("Digite um valor válido!");

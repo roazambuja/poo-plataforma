@@ -30,6 +30,7 @@ public abstract class Menu {
         System.out.println("7 - Realizar inscrição em um curso");
         System.out.println("8 - Finalizar curso");
         System.out.println("9 - Avaliar um curso");
+        System.out.println("0 - Sair");
         return scanner.nextInt();
     }
 
@@ -41,6 +42,7 @@ public abstract class Menu {
         System.out.println("5 - Alterar username");
         System.out.println("6 - Cadastrar um novo curso");
         System.out.println("7 - Criar trilha de estudos");
+        System.out.println("0 - Sair");
         return scanner.nextInt();
     }
 
@@ -52,6 +54,7 @@ public abstract class Menu {
         System.out.println("5 - Alterar username");
         System.out.println("6 - Cadastrar outro administrador");
         System.out.println("7 - Cadastrar novo instrutor");
+        System.out.println("0 - Sair");
         return scanner.nextInt();
     }
 }
