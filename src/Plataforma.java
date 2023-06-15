@@ -16,7 +16,7 @@ public class Plataforma {
         this.cnpj = cnpj;
         this.email = email;
         this.administradores = new ArrayList<>();
-        this.administradores.add(new Administrador("admin", "admin123", "Admin"));
+        this.administradores.add(new Administrador("admin", cnpj, "Admin"));
         this.instrutores = new ArrayList<>();
         this.alunos = new ArrayList<>();
         this.cursos = new ArrayList<>();
@@ -33,6 +33,12 @@ public class Plataforma {
         return new Plataforma(nome, cnpj, email);
     }
 
+    public void cadastrarAluno() {
+        this.alunos.add(Aluno.criar());
+        System.out.println("Sua conta foi criada com sucesso! Agora, faça login para continuar.");
+        System.out.println("-----------------------------------------------------------------------\n");
+    }
+
     public void imprimir() {
         System.out.println("Nome: " + this.nome);
         System.out.println("CNPJ: " + this.cnpj);
@@ -42,9 +48,18 @@ public class Plataforma {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        Plataforma plataforma = new Plataforma("Cursos TSI", "000111222000134", "plataforma@gmail.com");
-        plataforma.instrutores.add(new Instrutor("12345", "fulaninho", "Fulano"));
+        Plataforma plataforma = new Plataforma("Cursos", "000111222000134", "plataforma@gmail.com");
+        Instrutor instrutor = new Instrutor("12345", "fulaninho", "Fulano");
+        Instrutor instrutor2 = new Instrutor("12345", "fulaninha", "Fulana");
+        plataforma.instrutores.add(instrutor);
+        plataforma.instrutores.add(instrutor2);
+
         plataforma.alunos.add(new Aluno("123", "mariazinha", "Maria", "maria@gmail.com"));
+        plataforma.cursos.add(new Curso("POO I - Classes e Atributos", instrutor));
+        plataforma.cursos.add(new Curso("POO II - Métodos", instrutor));
+        plataforma.cursos.add(new Curso("HTML", instrutor2));
+        plataforma.cursos.add(new Curso("CSS", instrutor2));
+
 
         Integer menu = 1;
 
@@ -89,6 +104,29 @@ public class Plataforma {
                                 Integer menuAdmin;
                                 do {
                                     menuAdmin = Menu.menuAdministrador();
+                                    switch (menuAdmin) {
+                                        case 1:
+                                            admLogado.listarAdministradores(plataforma);
+                                            break;
+                                        case 2:
+                                            admLogado.listarFuncionarios(plataforma);
+                                            break;
+                                        case 3:
+                                            admLogado.listarCursos(plataforma);
+                                            break;
+                                        case 4:
+                                            admLogado.alterarSenha();
+                                            break;
+                                        case 5:
+                                            admLogado.alterarUsername();
+                                            break;
+                                        case 6:
+                                            admLogado.cadastrarNovoAdm(plataforma);
+                                            break;
+                                        case 7:
+                                            admLogado.cadastrarNovoInstrutor(plataforma);
+                                            break;
+                                    }
 
                                 } while (menuAdmin != 0);
                             }
@@ -118,9 +156,7 @@ public class Plataforma {
 
                     break;
                 case 2:
-                    plataforma.alunos.add(Aluno.criar());
-                    System.out.println("Sua conta foi criada com sucesso! Agora, faça login para continuar.");
-                    System.out.println("-----------------------------------------------------------------------\n");
+                    plataforma.cadastrarAluno();
                     break;
                 case 0:
                     break;
@@ -128,7 +164,6 @@ public class Plataforma {
                     System.out.println("Digite um valor válido!");
             }
         }
-
         scanner.close();
     }
 }

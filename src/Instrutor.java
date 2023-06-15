@@ -20,10 +20,6 @@ public class Instrutor extends Usuario {
         return new Instrutor(senha, username, nome);
     }
 
-    public static void main(String[] args) {
-        Instrutor i = Instrutor.criar();
-        i.imprimir();
-    }
 
     private static Instrutor getByUsername(String user, ArrayList<Instrutor> instrutores) {
         for (Instrutor instrutor : instrutores) {
