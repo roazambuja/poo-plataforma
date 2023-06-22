@@ -60,9 +60,9 @@ public abstract class Usuario {
         return false;
     }
 
-    public void listarCursos(Plataforma plataforma){
+    public void listarCursos(){
         System.out.println("CURSOS DISPONIVEIS -----------------------------------------");
-        for (Curso curso : plataforma.cursos) {
+        for (Curso curso : Plataforma.cursos) {
             curso.imprimir();
             System.out.println("-----------------------------------------------------------------------");
         }

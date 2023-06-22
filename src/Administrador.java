@@ -42,31 +42,31 @@ public class Administrador extends Usuario {
         return null;
     }
 
-    public void listarAdministradores(Plataforma plataforma){
+    public void listarAdministradores(){
         System.out.println("ADMINISTRADORES DA PLATAFORMA -------------------------------------------");
-        for (Administrador admin : plataforma.administradores) {
+        for (Administrador admin : Plataforma.administradores) {
             admin.imprimir();
             System.out.println("-----------------------------------------------------------------------");
         }
     }
 
-    public void listarFuncionarios(Plataforma plataforma){
+    public void listarFuncionarios(){
         System.out.println("INSTRUTORES DA PLATAFORMA -----------------------------------------");
-        for (Instrutor instrutor : plataforma.instrutores) {
+        for (Instrutor instrutor : Plataforma.instrutores) {
             instrutor.imprimir();
             System.out.println("-----------------------------------------------------------------------");
         }
     }
 
 
-    public void cadastrarNovoAdm(Plataforma plataforma) {
-        plataforma.administradores.add(Administrador.criar());
+    public void cadastrarNovoAdm() {
+        Plataforma.administradores.add(Administrador.criar());
         System.out.println("Novo administrador cadastrado com sucesso!");
         System.out.println("-----------------------------------------------------------------------\n");
     }
 
-    public void cadastrarNovoInstrutor(Plataforma plataforma) {
-        plataforma.instrutores.add(Instrutor.criar());
+    public void cadastrarNovoInstrutor() {
+        Plataforma.instrutores.add(Instrutor.criar());
         System.out.println("Novo instrutor cadastrado com sucesso!");
         System.out.println("-----------------------------------------------------------------------\n");
     }

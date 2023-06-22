@@ -6,20 +6,21 @@ public class Plataforma {
     public String cnpj;
     public String email;
 
-    public ArrayList<Administrador> administradores;
-    public ArrayList<Instrutor> instrutores;
-    public ArrayList<Aluno> alunos;
-    public ArrayList<Curso> cursos;
+    public static ArrayList<Administrador> administradores = new ArrayList<>();
+    public static ArrayList<Instrutor> instrutores = new ArrayList<>();
+    public static ArrayList<Aluno> alunos = new ArrayList<>();
+    public static ArrayList<Curso> cursos = new ArrayList<>();
+    public static ArrayList<Usuario> usuarios = new ArrayList<>();
+
 
     Plataforma(String nome, String cnpj, String email) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.email = email;
-        this.administradores = new ArrayList<>();
-        this.administradores.add(new Administrador("admin", cnpj, "Admin"));
-        this.instrutores = new ArrayList<>();
-        this.alunos = new ArrayList<>();
-        this.cursos = new ArrayList<>();
+        administradores.add(new Administrador("admin", cnpj, "Admin"));
+        instrutores = new ArrayList<>();
+        alunos = new ArrayList<>();
+        cursos = new ArrayList<>();
     }
 
     public static Plataforma criar() {
@@ -34,7 +35,7 @@ public class Plataforma {
     }
 
     public void cadastrarAluno() {
-        this.alunos.add(Aluno.criar());
+        alunos.add(Aluno.criar());
         System.out.println("Sua conta foi criada com sucesso! Agora, faça login para continuar.");
         System.out.println("-----------------------------------------------------------------------\n");
     }
@@ -51,14 +52,14 @@ public class Plataforma {
         Plataforma plataforma = new Plataforma("Cursos", "000111222000134", "plataforma@gmail.com");
         Instrutor instrutor = new Instrutor("12345", "fulaninho", "Fulano");
         Instrutor instrutor2 = new Instrutor("12345", "fulaninha", "Fulana");
-        plataforma.instrutores.add(instrutor);
-        plataforma.instrutores.add(instrutor2);
+        instrutores.add(instrutor);
+        instrutores.add(instrutor2);
 
-        plataforma.alunos.add(new Aluno("123", "mariazinha", "Maria", "maria@gmail.com"));
-        plataforma.cursos.add(new Curso("POO I - Classes e Atributos", instrutor));
-        plataforma.cursos.add(new Curso("POO II - Métodos", instrutor));
-        plataforma.cursos.add(new Curso("HTML", instrutor2));
-        plataforma.cursos.add(new Curso("CSS", instrutor2));
+        alunos.add(new Aluno("123", "mariazinha", "Maria", "maria@gmail.com"));
+        cursos.add(new Curso("POO I - Classes e Atributos", instrutor));
+        cursos.add(new Curso("POO II - Métodos", instrutor));
+        cursos.add(new Curso("HTML", instrutor2));
+        cursos.add(new Curso("CSS", instrutor2));
 
 
         Integer menu = 1;
@@ -106,13 +107,13 @@ public class Plataforma {
                                     menuAdmin = Menu.menuAdministrador();
                                     switch (menuAdmin) {
                                         case 1:
-                                            admLogado.listarAdministradores(plataforma);
+                                            admLogado.listarAdministradores();
                                             break;
                                         case 2:
-                                            admLogado.listarFuncionarios(plataforma);
+                                            admLogado.listarFuncionarios();
                                             break;
                                         case 3:
-                                            admLogado.listarCursos(plataforma);
+                                            admLogado.listarCursos();
                                             break;
                                         case 4:
                                             admLogado.alterarSenha();
@@ -121,10 +122,10 @@ public class Plataforma {
                                             admLogado.alterarUsername();
                                             break;
                                         case 6:
-                                            admLogado.cadastrarNovoAdm(plataforma);
+                                            admLogado.cadastrarNovoAdm();
                                             break;
                                         case 7:
-                                            admLogado.cadastrarNovoInstrutor(plataforma);
+                                            admLogado.cadastrarNovoInstrutor();
                                             break;
                                     }
 
