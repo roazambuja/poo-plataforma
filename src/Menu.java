@@ -11,15 +11,6 @@ public abstract class Menu {
         return scanner.nextInt();
     }
 
-    public static Integer menuOpcoes() {
-        System.out.println("Como deseja fazer login?");
-        System.out.println("1 - Aluno");
-        System.out.println("2 - Administrador");
-        System.out.println("3 - Instrutor");
-        System.out.println("0 - Voltar");
-        return scanner.nextInt();
-    }
-
     public static Integer menuAluno() {
         System.out.println("1 - Ver cursos disponíveis");
         System.out.println("2 - Ver cursos em andamento");

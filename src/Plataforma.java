@@ -17,10 +17,7 @@ public class Plataforma {
         this.nome = nome;
         this.cnpj = cnpj;
         this.email = email;
-        administradores.add(new Administrador("admin", cnpj, "Admin"));
-        instrutores = new ArrayList<>();
-        alunos = new ArrayList<>();
-        cursos = new ArrayList<>();
+        new Administrador("admin", cnpj, "Admin");
     }
 
     public static Plataforma criar() {
@@ -35,7 +32,7 @@ public class Plataforma {
     }
 
     public void cadastrarAluno() {
-        alunos.add(Aluno.criar());
+        Aluno.criar();
         System.out.println("Sua conta foi criada com sucesso! Agora, faça login para continuar.");
         System.out.println("-----------------------------------------------------------------------\n");
     }
@@ -52,109 +49,124 @@ public class Plataforma {
         Plataforma plataforma = new Plataforma("Cursos", "000111222000134", "plataforma@gmail.com");
         Instrutor instrutor = new Instrutor("12345", "fulaninho", "Fulano");
         Instrutor instrutor2 = new Instrutor("12345", "fulaninha", "Fulana");
-        instrutores.add(instrutor);
-        instrutores.add(instrutor2);
 
-        alunos.add(new Aluno("123", "mariazinha", "Maria", "maria@gmail.com"));
+        new Aluno("123", "mariazinha", "Maria", "maria@gmail.com");
+
         cursos.add(new Curso("POO I - Classes e Atributos", instrutor));
         cursos.add(new Curso("POO II - Métodos", instrutor));
         cursos.add(new Curso("HTML", instrutor2));
         cursos.add(new Curso("CSS", instrutor2));
 
-
-        Integer menu = 1;
+        int menu = 1;
 
         while (menu != 0) {
             menu = Menu.menuPrincipal(plataforma.nome);
 
             switch (menu) {
                 case 1:
-                    Integer menuLogin = Menu.menuOpcoes();
-                    String user, senha;
+                    System.out.println("Digite seu username: ");
+                    String username = scanner.nextLine();
+                    System.out.println("Digite sua senha: ");
+                    String senha = scanner.nextLine();
+                    Usuario usuarioLogado = Usuario.login(username, senha);
+                    if (usuarioLogado == null) {
+                        System.out.println("Dados incorretos!");
+                    } else {
+                        System.out.println("Seja bem vindo, " + usuarioLogado.nome + "!");
+                        int menuUsuario;
+                        if (usuarioLogado instanceof Administrador) {
+                            do {
+                                menuUsuario = Menu.menuAdministrador();
+                                switch (menuUsuario) {
+                                    case 1:
+                                        ((Administrador) usuarioLogado).listarAdministradores();
+                                        break;
+                                    case 2:
+                                        ((Administrador) usuarioLogado).listarFuncionarios();
+                                        break;
+                                    case 3:
+                                        usuarioLogado.listarCursos();
+                                        break;
+                                    case 4:
+                                        usuarioLogado.alterarSenha();
+                                        break;
+                                    case 5:
+                                        usuarioLogado.alterarUsername();
+                                        break;
+                                    case 6:
+                                        ((Administrador) usuarioLogado).cadastrarNovoAdm();
+                                        break;
+                                    case 7:
+                                        ((Administrador) usuarioLogado).cadastrarNovoInstrutor();
+                                        break;
+                                }
 
-                    switch (menuLogin) {
-                        case 1:
-                            System.out.println("Digite seu email: ");
-                            user = scanner.nextLine();
-                            System.out.println("Digite sua senha: ");
-                            senha = scanner.nextLine();
-                            Aluno alunoLogado = Aluno.login(user, senha, plataforma.alunos);
-                            if (alunoLogado == null) {
-                                System.out.println("Dados incorretos!");
-                            } else {
-                                Integer menuAluno;
-                                System.out.println("Seja bem vindo, " + alunoLogado.nome + "!");
-                                do {
-                                    menuAluno = Menu.menuAluno();
+                            } while (menuUsuario != 0);
+                        } else if (usuarioLogado instanceof Instrutor) {
+                            do {
+                                menuUsuario = Menu.menuInstrutor();
+                                switch (menuUsuario) {
+                                    case 1:
+//                                        usuarioLogado.listarCursos();
+                                        break;
+                                    case 2:
+                                        // ver informações de um curso
+                                        break;
+                                    case 3:
+                                        // visualizar suas trilhas de estudo
+                                        break;
+                                    case 4:
+                                        usuarioLogado.alterarSenha();
+                                        break;
+                                    case 5:
+                                        usuarioLogado.alterarUsername();
+                                        break;
+                                    case 6:
+                                        // cadastrar novo curso
+                                        break;
+                                    case 7:
+                                        // criar trilha de estudos
+                                        break;
+                                }
 
-                                } while (menuAluno != 0);
-                            }
-                            System.out.println(
-                                    "-----------------------------------------------------------------------\n");
-                            break;
-                        case 2:
-                            System.out.println("Digite seu username: ");
-                            user = scanner.nextLine();
-                            System.out.println("Digite sua senha: ");
-                            senha = scanner.nextLine();
-                            Administrador admLogado = Administrador.login(user, senha, plataforma.administradores);
-                            if (admLogado == null) {
-                                System.out.println("Dados incorretos!");
-                            } else {
-                                System.out.println("Seja bem vindo, " + admLogado.nome + "!");
-                                Integer menuAdmin;
-                                do {
-                                    menuAdmin = Menu.menuAdministrador();
-                                    switch (menuAdmin) {
-                                        case 1:
-                                            admLogado.listarAdministradores();
-                                            break;
-                                        case 2:
-                                            admLogado.listarFuncionarios();
-                                            break;
-                                        case 3:
-                                            admLogado.listarCursos();
-                                            break;
-                                        case 4:
-                                            admLogado.alterarSenha();
-                                            break;
-                                        case 5:
-                                            admLogado.alterarUsername();
-                                            break;
-                                        case 6:
-                                            admLogado.cadastrarNovoAdm();
-                                            break;
-                                        case 7:
-                                            admLogado.cadastrarNovoInstrutor();
-                                            break;
-                                    }
+                            } while (menuUsuario != 0);
+                        } else if (usuarioLogado instanceof Aluno) {
+                            do {
+                                menuUsuario = Menu.menuAluno();
+                                switch (menuUsuario) {
+                                    case 1:
+                                        usuarioLogado.listarCursos();
+                                        break;
+                                    case 2:
+                                        // ver cursos em andamento
+                                        break;
+                                    case 3:
+                                        // ver cursos concluidos
+                                        break;
+                                    case 4:
+                                        usuarioLogado.alterarSenha();
+                                        break;
+                                    case 5:
+//                                        usuarioLogado.alterarEmail();
+                                        break;
+                                    case 6:
+                                        usuarioLogado.alterarUsername();
+                                        break;
+                                    case 7:
+                                        // realizar inscricao em um curso
+                                        break;
+                                    case 8:
+                                        // finalizar um curso
+                                        break;
+                                    case 9:
+                                        // avaliar um curso
+                                        break;
+                                }
 
-                                } while (menuAdmin != 0);
-                            }
-                            System.out.println(
-                                    "-----------------------------------------------------------------------\n");
-                            break;
-                        case 3:
-                            System.out.println("Digite seu username: ");
-                            user = scanner.nextLine();
-                            System.out.println("Digite sua senha: ");
-                            senha = scanner.nextLine();
-                            Instrutor instrutorLogado = Instrutor.login(user, senha, plataforma.instrutores);
-                            if (instrutorLogado == null) {
-                                System.out.println("Dados incorretos!");
-                            } else {
-                                System.out.println("Seja bem vindo, " + instrutorLogado.nome + "!");
-                                Integer menuInstrutor;
-                                do {
-                                    menuInstrutor = Menu.menuInstrutor();
+                            } while (menuUsuario != 0);
+                        }
 
-                                } while (menuInstrutor != 0);
-                            }
-                            System.out.println(
-                                    "-----------------------------------------------------------------------\n");
-                            break;
                     }
-
                     break;
                 case 2:
                     plataforma.cadastrarAluno();

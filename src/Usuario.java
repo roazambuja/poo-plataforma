@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Usuario {
-    public String senha;
+    private String senha;
     public String username;
     public String nome;
     public static Scanner scanner = new Scanner(System.in);
@@ -17,7 +17,6 @@ public abstract class Usuario {
     public void imprimir() {
         System.out.println("Nome: " + this.nome);
         System.out.println("Username: " + this.username);
-        System.out.println("Senha: " + this.senha);
     }
 
     public void alterarSenha() {
@@ -58,6 +57,25 @@ public abstract class Usuario {
             return true;
         }
         return false;
+    }
+
+    public static Usuario login(String username, String senha) {
+        Usuario user = Usuario.getByUsername(username);
+        if (user != null) {
+            if (user.senha.equals(senha)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    private static Usuario getByUsername(String username) {
+        for (Usuario user : Plataforma.usuarios) {
+            if (user.username.equals(username)) {
+                return user;
+            }
+        }
+        return null;
     }
 
     public void listarCursos(){

@@ -5,6 +5,8 @@ public class Administrador extends Usuario {
 
     Administrador(String senha, String username, String nome) {
         super(senha, username, nome);
+        Plataforma.usuarios.add(this);
+        Plataforma.administradores.add(this);
     }
 
     private static Administrador criar() {
@@ -23,25 +25,6 @@ public class Administrador extends Usuario {
         a.imprimir();
     }
 
-    private static Administrador getByUsername(String user, ArrayList<Administrador> admins) {
-        for (Administrador admin : admins) {
-            if (admin.username.equals(user)) {
-                return admin;
-            }
-        }
-        return null;
-    }
-
-    public static Administrador login(String user, String senha, ArrayList<Administrador> admins) {
-        Administrador admin = Administrador.getByUsername(user, admins);
-        if (admin != null) {
-            if (admin.senha.equals(senha)) {
-                return admin;
-            }
-        }
-        return null;
-    }
-
     public void listarAdministradores(){
         System.out.println("ADMINISTRADORES DA PLATAFORMA -------------------------------------------");
         for (Administrador admin : Plataforma.administradores) {
@@ -57,7 +40,6 @@ public class Administrador extends Usuario {
             System.out.println("-----------------------------------------------------------------------");
         }
     }
-
 
     public void cadastrarNovoAdm() {
         Plataforma.administradores.add(Administrador.criar());

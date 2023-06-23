@@ -7,36 +7,18 @@ public class Instrutor extends Usuario {
     Instrutor(String senha, String username, String nome) {
         super(senha, username, nome);
         this.cursos = new ArrayList<>();
+        Plataforma.instrutores.add(this);
+        Plataforma.usuarios.add(this);
     }
 
     public static Instrutor criar() {
         Scanner leitor = new Scanner(System.in);
-        System.out.println("Digite seu nome: ");
+        System.out.println("Digite o nome: ");
         String nome = leitor.nextLine();
         System.out.println("Digite um nome de usuário para login: ");
         String username = leitor.nextLine();
         System.out.println("Digite uma senha: ");
         String senha = leitor.nextLine();
         return new Instrutor(senha, username, nome);
-    }
-
-
-    private static Instrutor getByUsername(String user, ArrayList<Instrutor> instrutores) {
-        for (Instrutor instrutor : instrutores) {
-            if (instrutor.username.equals(user)) {
-                return instrutor;
-            }
-        }
-        return null;
-    }
-
-    public static Instrutor login(String user, String senha, ArrayList<Instrutor> instrutores) {
-        Instrutor instrutor = Instrutor.getByUsername(user, instrutores);
-        if (instrutor != null) {
-            if (instrutor.senha.equals(senha)) {
-                return instrutor;
-            }
-        }
-        return null;
     }
 }
