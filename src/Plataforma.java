@@ -52,10 +52,10 @@ public class Plataforma {
 
         new Aluno("123", "mariazinha", "Maria", "maria@gmail.com");
 
-        cursos.add(new Curso("POO I - Classes e Atributos", instrutor));
-        cursos.add(new Curso("POO II - Métodos", instrutor));
-        cursos.add(new Curso("HTML", instrutor2));
-        cursos.add(new Curso("CSS", instrutor2));
+        new Curso("POO I - Classes e Atributos", instrutor);
+        new Curso("POO II - Métodos", instrutor);
+        new Curso("HTML", instrutor2);
+        new Curso("CSS", instrutor2);
 
         int menu = 1;
 
@@ -107,7 +107,7 @@ public class Plataforma {
                                 menuUsuario = Menu.menuInstrutor();
                                 switch (menuUsuario) {
                                     case 1:
-//                                        usuarioLogado.listarCursos();
+                                        usuarioLogado.listarCursos();
                                         break;
                                     case 2:
                                         // ver informações de um curso
@@ -122,13 +122,12 @@ public class Plataforma {
                                         usuarioLogado.alterarUsername();
                                         break;
                                     case 6:
-                                        // cadastrar novo curso
+                                        ((Instrutor) usuarioLogado).cadastrarCurso();
                                         break;
                                     case 7:
                                         // criar trilha de estudos
                                         break;
                                 }
-
                             } while (menuUsuario != 0);
                         } else if (usuarioLogado instanceof Aluno) {
                             do {

@@ -10,15 +10,10 @@ public class Curso {
     Curso(String titulo, Instrutor instrutor) {
         this.titulo = titulo;
         this.instrutor = instrutor;
+        this.alunos = new ArrayList<>();
+        Plataforma.cursos.add(this);
+        instrutor.cursos.add(this);
     }
-
-//    public static Curso criar() {
-//        Curso curso = new Curso();
-//        Scanner leitor = new Scanner(System.in);
-//        System.out.println("Digite o título do curso: ");
-//        curso.titulo = leitor.nextLine();
-//        return curso;
-//    }
 
     public void imprimir() {
 

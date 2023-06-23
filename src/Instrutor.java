@@ -21,4 +21,22 @@ public class Instrutor extends Usuario {
         String senha = leitor.nextLine();
         return new Instrutor(senha, username, nome);
     }
+
+    @Override
+    public void listarCursos() {
+        System.out.println("MEUS CURSOS -----------------------------------------");
+        for (Curso curso : Plataforma.cursos) {
+            if (curso.instrutor == this) {
+                curso.imprimir();
+                System.out.println("-----------------------------------------------------------------------");
+            }
+        }
+    }
+
+    public Curso cadastrarCurso() {
+        Scanner leitor = new Scanner(System.in);
+        System.out.println("Digite o título do curso: ");
+        String titulo = leitor.nextLine();
+        return new Curso(titulo, this);
+    }
 }
