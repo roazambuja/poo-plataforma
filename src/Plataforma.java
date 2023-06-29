@@ -137,28 +137,34 @@ public class Plataforma {
                                         usuarioLogado.listarCursos();
                                         break;
                                     case 2:
-                                        // ver cursos em andamento
+                                        ((Aluno) usuarioLogado).listarMinhasInscricoes(false);
                                         break;
                                     case 3:
-                                        // ver cursos concluidos
+                                        ((Aluno) usuarioLogado).listarMinhasInscricoes(true);
                                         break;
                                     case 4:
-                                        usuarioLogado.alterarSenha();
+                                        ((Aluno) usuarioLogado).listarMinhasInscricoes();
                                         break;
                                     case 5:
-//                                        usuarioLogado.alterarEmail();
+                                        usuarioLogado.imprimir();
                                         break;
                                     case 6:
-                                        usuarioLogado.alterarUsername();
+                                        usuarioLogado.alterarSenha();
                                         break;
                                     case 7:
-                                        // realizar inscricao em um curso
+                                        ((Aluno) usuarioLogado).alterarEmail();
                                         break;
                                     case 8:
-                                        // finalizar um curso
+                                        usuarioLogado.alterarUsername();
                                         break;
                                     case 9:
-                                        // avaliar um curso
+                                        ((Aluno) usuarioLogado).realizarInscricao();
+                                        break;
+                                    case 10:
+                                        ((Aluno) usuarioLogado).finalizarCurso();
+                                        break;
+                                    case 11:
+                                        ((Aluno) usuarioLogado).avaliarCurso();
                                         break;
                                 }
 

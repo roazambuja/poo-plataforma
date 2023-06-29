@@ -1,24 +1,31 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Avaliacao {
     public Curso curso;
     public Aluno aluno;
     public Integer nota;
 
-    public static Avaliacao criar() {
-        Avaliacao avaliacao = new Avaliacao();
-        Scanner leitor = new Scanner(System.in);
-        System.out.println("Digite sua nota para o curso: ");
-        avaliacao.nota = leitor.nextInt();
-        return avaliacao;
+    public static ArrayList<Avaliacao> avaliacoes = new ArrayList<>();
+
+    Avaliacao(Curso curso, Aluno aluno, Integer nota) {
+        this.curso = curso;
+        this.aluno = aluno;
+        this.nota = nota;
+        avaliacoes.add(this);
+        this.curso.atualizaNota();
+    }
+
+    public static ArrayList<Avaliacao> listaAvaliacoesDeUmCurso(Curso curso) {
+        ArrayList<Avaliacao> lista = new ArrayList<>();
+        for (Avaliacao a : Avaliacao.avaliacoes) {
+            if (a.curso == curso) {
+                lista.add(a);
+            }
+        }
+        return lista;
     }
 
     public void imprimir() {
         System.out.println("Nota: " + this.nota);
-    }
-
-    public static void main(String[] args) {
-        Avaliacao a = Avaliacao.criar();
-        a.imprimir();
     }
 }

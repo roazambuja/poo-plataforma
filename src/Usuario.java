@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public abstract class Usuario {
     private String senha;
@@ -19,39 +19,43 @@ public abstract class Usuario {
         System.out.println("Username: " + this.username);
     }
 
+    public String getSenha() {
+        return this.senha;
+    }
+
     public void alterarSenha() {
         System.out.println("Digite sua senha atual: ");
         String atual = scanner.nextLine();
         System.out.println("Digite a sua nova senha: ");
         String nova = scanner.nextLine();
-        if(validaTrocaDeSenha(atual, nova)) {
+        if (validaTrocaDeSenha(atual, nova)) {
             System.out.println("Senha alterada com sucesso\n");
         } else {
             System.out.println("Não foi possível alterar sua senha, tente novamente.\n");
         }
     }
 
-    public void alterarUsername(){
+    public void alterarUsername() {
         System.out.println("Digite sua senha: ");
         String senha = scanner.nextLine();
         System.out.println("Digite seu novo username: ");
         String username = scanner.nextLine();
-        if(validaTrocaDeUsername(senha, username)) {
+        if (validaTrocaDeUsername(senha, username)) {
             System.out.println("Username alterado com sucesso!\n");
         } else {
             System.out.println("Não foi possível alterar seu username, tente novamente.\n");
         }
     }
 
-    private boolean validaTrocaDeUsername(String senha, String username){
-        if(senha.equals(this.senha)) {
+    private boolean validaTrocaDeUsername(String senha, String username) {
+        if (senha.equals(this.senha)) {
             this.username = username;
             return true;
         }
         return false;
     }
 
-    private boolean validaTrocaDeSenha(String senhaAntiga, String senhaNova){
+    private boolean validaTrocaDeSenha(String senhaAntiga, String senhaNova) {
         if (senhaAntiga.equals(this.senha)) {
             this.senha = senhaNova;
             return true;
@@ -78,7 +82,7 @@ public abstract class Usuario {
         return null;
     }
 
-    public void listarCursos(){
+    public void listarCursos() {
         System.out.println("CURSOS DISPONIVEIS -----------------------------------------");
         for (Curso curso : Plataforma.cursos) {
             curso.imprimir();
