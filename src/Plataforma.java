@@ -51,11 +51,13 @@ public class Plataforma {
         Instrutor instrutor2 = new Instrutor("12345", "fulaninha", "Fulana");
 
         new Aluno("123", "mariazinha", "Maria", "maria@gmail.com");
+        new Aluno("123", "joaozinho", "Joao", "joao@gmail.com");
 
         new Curso("POO I - Classes e Atributos", instrutor);
         new Curso("POO II - Métodos", instrutor);
         new Curso("HTML", instrutor2);
         new Curso("CSS", instrutor2);
+
 
         int menu = 1;
 
@@ -110,23 +112,22 @@ public class Plataforma {
                                         usuarioLogado.listarCursos();
                                         break;
                                     case 2:
-                                        // ver informações de um curso
+                                        ((Instrutor) usuarioLogado).listarMinhasTrilhas();
                                         break;
                                     case 3:
-                                        // visualizar suas trilhas de estudo
-                                        break;
-                                    case 4:
                                         usuarioLogado.alterarSenha();
                                         break;
-                                    case 5:
+                                    case 4:
                                         usuarioLogado.alterarUsername();
                                         break;
-                                    case 6:
+                                    case 5:
                                         ((Instrutor) usuarioLogado).cadastrarCurso();
                                         break;
-                                    case 7:
-                                        // criar trilha de estudos
+                                    case 6:
+                                        ((Instrutor) usuarioLogado).criarTrilhaDeEstudos();
                                         break;
+                                    case 7:
+                                        ((Instrutor) usuarioLogado).adicionarCursoEmUmaTrilha();
                                 }
                             } while (menuUsuario != 0);
                         } else if (usuarioLogado instanceof Aluno) {

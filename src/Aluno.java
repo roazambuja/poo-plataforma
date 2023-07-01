@@ -39,14 +39,6 @@ public class Aluno extends Usuario {
         System.out.println("-----------------------------------------------------------------------");
     }
 
-    public static Curso getCursoByName(String nome) {
-        for (Curso c : Plataforma.cursos) {
-            if (c.titulo.equals(nome)) {
-                return c;
-            }
-        }
-        return null;
-    }
 
     public Inscricao getInscricaoByNomeDoCurso(String nome) {
         for (Inscricao i : this.minhasInscricoes) {
@@ -61,7 +53,7 @@ public class Aluno extends Usuario {
         Scanner leitor = new Scanner(System.in);
         System.out.println("Digite o nome do curso que deseja se inscrever: ");
         String nome = leitor.nextLine();
-        Curso curso = Aluno.getCursoByName(nome);
+        Curso curso = Usuario.getCursoByName(nome);
         if (curso == null) {
             System.out.println("Ops, não encontramos o curso!");
         } else {

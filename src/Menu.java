@@ -29,12 +29,12 @@ public abstract class Menu {
 
     public static Integer menuInstrutor() {
         System.out.println("1 - Listar seus cursos");
-        System.out.println("2 - Ver informações de um curso");
-        System.out.println("3 - Visualizar suas trilhas de estudo");
-        System.out.println("4 - Alterar senha");
-        System.out.println("5 - Alterar username");
-        System.out.println("6 - Cadastrar um novo curso");
-        System.out.println("7 - Criar trilha de estudos");
+        System.out.println("2 - Visualizar suas trilhas de estudo");
+        System.out.println("3 - Alterar senha");
+        System.out.println("4 - Alterar username");
+        System.out.println("5 - Cadastrar um novo curso");
+        System.out.println("6 - Criar trilha de estudos");
+        System.out.println("7 - Adicionar curso em uma trilha de estudos");
         System.out.println("0 - Sair");
         return scanner.nextInt();
     }

@@ -89,4 +89,13 @@ public abstract class Usuario {
             System.out.println("-----------------------------------------------------------------------");
         }
     }
+
+    public static Curso getCursoByName(String nome) {
+        for (Curso c : Plataforma.cursos) {
+            if (c.titulo.equals(nome)) {
+                return c;
+            }
+        }
+        return null;
+    }
 }
