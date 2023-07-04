@@ -41,8 +41,13 @@ public class Instrutor extends Usuario {
     }
 
     public void listarMinhasTrilhas() {
+        System.out.println("MINHAS TRILHAS DE ESTUDO -----------------------------------------");
         for (TrilhaDeEstudos t : this.trilhas) {
             t.imprimir();
+        }
+        if (this.trilhas.size() == 0) {
+            System.out.println("Você ainda não tem nenhuma trilha de estudos cadastrada!");
+            System.out.println("-----------------------------------------------------------------------");
         }
     }
 
