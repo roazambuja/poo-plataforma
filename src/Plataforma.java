@@ -5,10 +5,6 @@ public class Plataforma {
     public String nome;
     public String cnpj;
     public String email;
-
-    public static ArrayList<Administrador> administradores = new ArrayList<>();
-    public static ArrayList<Instrutor> instrutores = new ArrayList<>();
-    public static ArrayList<Aluno> alunos = new ArrayList<>();
     public static ArrayList<Curso> cursos = new ArrayList<>();
     public static ArrayList<Usuario> usuarios = new ArrayList<>();
 
@@ -35,6 +31,26 @@ public class Plataforma {
         Aluno.criar();
         System.out.println("Sua conta foi criada com sucesso! Agora, faça login para continuar.");
         System.out.println("-----------------------------------------------------------------------\n");
+    }
+
+    public static ArrayList<Administrador> getAdministradores() {
+        ArrayList<Administrador> admins = new ArrayList<>();
+        for (Usuario u : Plataforma.usuarios) {
+            if (u instanceof Administrador) {
+                admins.add((Administrador) u);
+            }
+        }
+        return admins;
+    }
+
+    public static ArrayList<Instrutor> getInstrutores() {
+        ArrayList<Instrutor> instrutores = new ArrayList<>();
+        for (Usuario u : Plataforma.usuarios) {
+            if (u instanceof Instrutor) {
+                instrutores.add((Instrutor) u);
+            }
+        }
+        return instrutores;
     }
 
     public void imprimir() {

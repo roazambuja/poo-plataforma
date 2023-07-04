@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Administrador extends Usuario {
@@ -6,7 +5,6 @@ public class Administrador extends Usuario {
     Administrador(String senha, String username, String nome) {
         super(senha, username, nome);
         Plataforma.usuarios.add(this);
-        Plataforma.administradores.add(this);
     }
 
     private static Administrador criar() {
@@ -25,30 +23,30 @@ public class Administrador extends Usuario {
         a.imprimir();
     }
 
-    public void listarAdministradores(){
+    public void listarAdministradores() {
         System.out.println("ADMINISTRADORES DA PLATAFORMA -------------------------------------------");
-        for (Administrador admin : Plataforma.administradores) {
+        for (Administrador admin : Plataforma.getAdministradores()) {
             admin.imprimir();
             System.out.println("-----------------------------------------------------------------------");
         }
     }
 
-    public void listarFuncionarios(){
+    public void listarFuncionarios() {
         System.out.println("INSTRUTORES DA PLATAFORMA -----------------------------------------");
-        for (Instrutor instrutor : Plataforma.instrutores) {
+        for (Instrutor instrutor : Plataforma.getInstrutores()) {
             instrutor.imprimir();
             System.out.println("-----------------------------------------------------------------------");
         }
     }
 
     public void cadastrarNovoAdm() {
-        Plataforma.administradores.add(Administrador.criar());
+        Administrador.criar();
         System.out.println("Novo administrador cadastrado com sucesso!");
         System.out.println("-----------------------------------------------------------------------\n");
     }
 
     public void cadastrarNovoInstrutor() {
-        Plataforma.instrutores.add(Instrutor.criar());
+        Instrutor.criar();
         System.out.println("Novo instrutor cadastrado com sucesso!");
         System.out.println("-----------------------------------------------------------------------\n");
     }

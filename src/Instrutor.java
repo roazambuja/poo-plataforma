@@ -9,7 +9,6 @@ public class Instrutor extends Usuario {
         super(senha, username, nome);
         this.cursos = new ArrayList<>();
         this.trilhas = new ArrayList<>();
-        Plataforma.instrutores.add(this);
         Plataforma.usuarios.add(this);
     }
 

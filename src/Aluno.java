@@ -14,7 +14,6 @@ public class Aluno extends Usuario {
         this.email = email;
         this.minhasInscricoes = new ArrayList<>();
         this.matricula = String.format("%05d", counter++);
-        Plataforma.alunos.add(this);
         Plataforma.usuarios.add(this);
     }
 
