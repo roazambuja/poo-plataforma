@@ -2,14 +2,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Instrutor extends Usuario {
-    public ArrayList<Curso> cursos;
-    public ArrayList<TrilhaDeEstudos> trilhas;
+    private ArrayList<Curso> cursos;
+    private ArrayList<TrilhaDeEstudos> trilhas;
 
     Instrutor(String senha, String username, String nome) {
         super(senha, username, nome);
         this.cursos = new ArrayList<>();
         this.trilhas = new ArrayList<>();
-        Plataforma.usuarios.add(this);
+        Plataforma.getUsuarios().add(this);
+    }
+
+    public ArrayList<Curso> getCursos() {
+        return this.cursos;
     }
 
     public static Instrutor criar() {
@@ -28,7 +32,7 @@ public class Instrutor extends Usuario {
         System.out.println("MEUS CURSOS -----------------------------------------");
         for (Curso curso : this.cursos) {
             curso.imprimir();
-            System.out.println("Quantidade de alunos: " + curso.alunos.size());
+            System.out.println("Quantidade de alunos: " + curso.getAlunos().size());
             System.out.println("-----------------------------------------------------------------------");
         }
     }
@@ -73,10 +77,10 @@ public class Instrutor extends Usuario {
             if (curso == null) {
                 System.out.println("Curso não encontrado.");
             } else {
-                if (curso.instrutor != this) {
+                if (curso.getInstrutor() != this) {
                     System.out.println("Você pode adicionar apenas seus cursos na trilha de estudos.");
                 } else {
-                    trilha.cursos.add(curso);
+                    trilha.getCursos().add(curso);
                     System.out.println("Curso adicionado na trilha de estudos com sucesso.");
                 }
             }
@@ -85,7 +89,7 @@ public class Instrutor extends Usuario {
 
     public TrilhaDeEstudos getTrilhaByName(String nome) {
         for (TrilhaDeEstudos t : this.trilhas) {
-            if (t.nome.equals(nome)) {
+            if (t.getNome().equals(nome)) {
                 return t;
             }
         }

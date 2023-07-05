@@ -2,19 +2,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Aluno extends Usuario {
-    public String email;
-    public String matricula;
+    private String email;
+    private String matricula;
+    private ArrayList<Inscricao> minhasInscricoes;
+    private static Integer counter = 1;
+    private Scanner scanner = new Scanner(System.in);
 
-    public ArrayList<Inscricao> minhasInscricoes;
-
-    public static Integer counter = 1;
 
     Aluno(String senha, String username, String nome, String email) {
         super(senha, username, nome);
         this.email = email;
         this.minhasInscricoes = new ArrayList<>();
         this.matricula = String.format("%05d", counter++);
-        Plataforma.usuarios.add(this);
+        Plataforma.getUsuarios().add(this);
+    }
+
+    public ArrayList<Inscricao> getInscricoes() {
+        return this.minhasInscricoes;
     }
 
     public static Aluno criar() {
@@ -41,7 +45,7 @@ public class Aluno extends Usuario {
 
     public Inscricao getInscricaoByNomeDoCurso(String nome) {
         for (Inscricao i : this.minhasInscricoes) {
-            if (i.curso.titulo.equals(nome)) {
+            if (i.getCurso().getTitulo().equals(nome)) {
                 return i;
             }
         }
@@ -49,9 +53,8 @@ public class Aluno extends Usuario {
     }
 
     public void realizarInscricao() {
-        Scanner leitor = new Scanner(System.in);
         System.out.println("Digite o nome do curso que deseja se inscrever: ");
-        String nome = leitor.nextLine();
+        String nome = scanner.nextLine();
         Curso curso = Usuario.getCursoByName(nome);
         if (curso == null) {
             System.out.println("Ops, não encontramos o curso!");
@@ -59,7 +62,7 @@ public class Aluno extends Usuario {
             Inscricao i = this.getInscricaoByNomeDoCurso(nome);
             if (i == null) {
                 new Inscricao(this, curso);
-                System.out.println("Parabéns, você está inscrito no curso " + curso.titulo + "!");
+                System.out.println("Parabéns, você está inscrito no curso " + curso.getTitulo() + "!");
             } else {
                 System.out.println("Você não pode se cadastrar duas vezes em um curso!");
             }
@@ -125,7 +128,7 @@ public class Aluno extends Usuario {
             System.out.println("Ops, você não está matriculado no curso informado.");
         } else {
             if (i.concluiCurso()) {
-                System.out.println("Parabéns! O curso " + i.curso.titulo + " foi concluído!");
+                System.out.println("Parabéns! O curso " + i.getCurso().getTitulo() + " foi concluído!");
             } else {
                 System.out.println("Esse curso já foi concluído por você anteriormente!");
             }

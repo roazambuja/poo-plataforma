@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Plataforma {
-    public String nome;
-    public String cnpj;
-    public String email;
-    public static ArrayList<Curso> cursos = new ArrayList<>();
-    public static ArrayList<Usuario> usuarios = new ArrayList<>();
+    private String nome;
+    private String cnpj;
+    private String email;
+    private static ArrayList<Curso> cursos = new ArrayList<>();
+    private static ArrayList<Usuario> usuarios = new ArrayList<>();
 
 
     Plataforma(String nome, String cnpj, String email) {
@@ -14,6 +14,14 @@ public class Plataforma {
         this.cnpj = cnpj;
         this.email = email;
         new Administrador("admin", cnpj, "Admin");
+    }
+
+    public static ArrayList<Curso> getCursos() {
+        return Plataforma.cursos;
+    }
+
+    public static ArrayList<Usuario> getUsuarios() {
+        return Plataforma.usuarios;
     }
 
     public static Plataforma criar() {
@@ -90,7 +98,7 @@ public class Plataforma {
                     if (usuarioLogado == null) {
                         System.out.println("Dados incorretos!");
                     } else {
-                        System.out.println("Seja bem vindo, " + usuarioLogado.nome + "!");
+                        System.out.println("Seja bem vindo, " + usuarioLogado.getNome() + "!");
                         int menuUsuario;
                         if (usuarioLogado instanceof Administrador) {
                             do {

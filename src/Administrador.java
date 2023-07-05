@@ -4,7 +4,7 @@ public class Administrador extends Usuario {
 
     Administrador(String senha, String username, String nome) {
         super(senha, username, nome);
-        Plataforma.usuarios.add(this);
+        Plataforma.getUsuarios().add(this);
     }
 
     private static Administrador criar() {

@@ -3,10 +3,10 @@ import java.time.LocalDate;
 public class Inscricao {
     private Boolean concluido;
     private Boolean avaliado;
-    public LocalDate dataInicial;
-    public LocalDate dataFinal;
-    public Aluno aluno;
-    public Curso curso;
+    private LocalDate dataInicial;
+    private LocalDate dataFinal;
+    private Aluno aluno;
+    private Curso curso;
 
     Inscricao(Aluno aluno, Curso curso) {
         this.aluno = aluno;
@@ -14,8 +14,12 @@ public class Inscricao {
         this.concluido = false;
         this.avaliado = false;
         this.dataInicial = LocalDate.now();
-        aluno.minhasInscricoes.add(this);
-        curso.alunos.add(aluno);
+        aluno.getInscricoes().add(this);
+        curso.getAlunos().add(aluno);
+    }
+
+    public Curso getCurso() {
+        return this.curso;
     }
 
     public String imprimeData(LocalDate data) {
@@ -23,7 +27,7 @@ public class Inscricao {
     }
 
     public void imprimir() {
-        System.out.println("Curso: " + this.curso.titulo);
+        System.out.println("Curso: " + this.curso.getTitulo());
         System.out.println("Status: " + (this.concluido ? "Concluído" : "Em andamento"));
         System.out.println("Data de início: " + imprimeData(this.dataInicial));
         if (this.concluido) {

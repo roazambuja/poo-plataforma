@@ -1,17 +1,20 @@
 import java.util.ArrayList;
 
 public class Avaliacao {
-    public Curso curso;
-    public Aluno aluno;
-    public Integer nota;
-
-    public static ArrayList<Avaliacao> avaliacoes = new ArrayList<>();
+    private Curso curso;
+    private Aluno aluno;
+    private Integer nota;
+    private static ArrayList<Avaliacao> avaliacoes = new ArrayList<>();
 
     Avaliacao(Curso curso, Aluno aluno, Integer nota) {
         this.curso = curso;
         this.aluno = aluno;
         this.nota = nota;
         avaliacoes.add(this);
+    }
+
+    public Integer getNota() {
+        return this.nota;
     }
 
     public static ArrayList<Avaliacao> listaAvaliacoesDeUmCurso(Curso curso) {
@@ -22,9 +25,5 @@ public class Avaliacao {
             }
         }
         return lista;
-    }
-
-    public void imprimir() {
-        System.out.println("Nota: " + this.nota);
     }
 }

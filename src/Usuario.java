@@ -3,10 +3,9 @@ import java.util.Scanner;
 
 public abstract class Usuario {
     private String senha;
-    public String username;
-    public String nome;
-    public static Scanner scanner = new Scanner(System.in);
-
+    private String username;
+    private String nome;
+    private static Scanner scanner = new Scanner(System.in);
 
     Usuario(String senha, String username, String nome) {
         this.senha = senha;
@@ -21,6 +20,10 @@ public abstract class Usuario {
 
     public String getSenha() {
         return this.senha;
+    }
+
+    public String getNome() {
+        return this.nome;
     }
 
     public void alterarSenha() {
@@ -74,7 +77,7 @@ public abstract class Usuario {
     }
 
     private static Usuario getByUsername(String username) {
-        for (Usuario user : Plataforma.usuarios) {
+        for (Usuario user : Plataforma.getUsuarios()) {
             if (user.username.equals(username)) {
                 return user;
             }
@@ -84,15 +87,15 @@ public abstract class Usuario {
 
     public void listarCursos() {
         System.out.println("CURSOS DISPONIVEIS -----------------------------------------");
-        for (Curso curso : Plataforma.cursos) {
+        for (Curso curso : Plataforma.getCursos()) {
             curso.imprimir();
             System.out.println("-----------------------------------------------------------------------");
         }
     }
 
     public static Curso getCursoByName(String nome) {
-        for (Curso c : Plataforma.cursos) {
-            if (c.titulo.equals(nome)) {
+        for (Curso c : Plataforma.getCursos()) {
+            if (c.getTitulo().equals(nome)) {
                 return c;
             }
         }
