@@ -12,7 +12,6 @@ public class Avaliacao {
         this.aluno = aluno;
         this.nota = nota;
         avaliacoes.add(this);
-        this.curso.atualizaNota();
     }
 
     public static ArrayList<Avaliacao> listaAvaliacoesDeUmCurso(Curso curso) {

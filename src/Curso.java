@@ -4,7 +4,6 @@ public class Curso {
     public String titulo;
     public Instrutor instrutor;
     public ArrayList<Aluno> alunos;
-    private Double nota;
 
     Curso(String titulo, Instrutor instrutor) {
         this.titulo = titulo;
@@ -17,15 +16,18 @@ public class Curso {
     public void imprimir() {
         System.out.println("Titulo: " + this.titulo);
         System.out.println("Instrutor: " + this.instrutor.nome);
-        System.out.println("Nota média: " + (this.nota == null ? "ainda não avaliado" : this.nota));
+        System.out.println("Nota média: " + (this.getNota() == null ? "ainda não avaliado" : this.getNota()));
     }
 
-    public void atualizaNota() {
+    public Double getNota() {
         Double soma = 0.0;
         ArrayList<Avaliacao> lista = Avaliacao.listaAvaliacoesDeUmCurso(this);
         for (Avaliacao a : lista) {
             soma += a.nota;
         }
-        this.nota = soma / lista.size();
+        if (lista.size() == 0) {
+            return null;
+        }
+        return (soma / lista.size());
     }
 }
